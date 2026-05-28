@@ -1,0 +1,419 @@
+﻿/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ *  ASCENSUS STRATEGIC — Design Tokens
+ *  v1.0  ·  Next.js 16 / React 19 / Tailwind CSS v4
+ *
+ *  Usage — two integration paths:
+ *
+ *  1.  Plain CSS:  @import "./tokens.css";  then use var(--color-gold) etc.
+ *  2.  Tailwind v4: paste the @theme block into your globals.css to unlock
+ *      utility classes like bg-gold, text-text-dim, font-display, etc.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ROOT — raw CSS custom properties (always available, framework-agnostic)
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+
+  /* ── COLOUR ─────────────────────────────────────────────────────────── */
+
+  /* Backgrounds — elevation scale (darkest → lightest) */
+  --color-bg-base:      #0B0C0E;   /* page canvas                         */
+  --color-bg-step-1:    #0F1013;   /* section shift tier 1 (metrics)      */
+  --color-bg-step-2:    #121416;   /* section shift tier 2 (services)     */
+  --color-bg-soft:      #121212;   /* subtle surface lift                 */
+  --color-bg-elev:      #181C24;   /* cards, panels, drawers              */
+  --color-bg-raised:    #1E2330;   /* hover targets, tooltips             */
+  --color-bg-overlay:   rgba(11, 12, 14, 0.88); /* modal scrim          */
+
+  /* Gold — primary brand accent */
+  --color-gold:         #C6AA4C;   /* primary                             */
+  --color-gold-soft:    #B09840;   /* muted variant                       */
+  --color-gold-dim:     rgba(198, 170, 76, 0.55);
+  --color-gold-glow:    rgba(198, 170, 76, 0.12);
+  --color-gold-line:    rgba(198, 170, 76, 0.18);
+  --color-gold-subtle:  rgba(198, 170, 76, 0.06);
+
+  /* Text hierarchy */
+  --color-text:         #F5F3EF;   /* primary — soft warm white            */
+  --color-text-dim:     #A8A090;   /* secondary — supporting copy         */
+  --color-text-mute:    #6E6960;   /* tertiary — placeholders, disabled   */
+  --color-text-inverse: #0B0C0E;   /* on bright surfaces                  */
+
+  /* Borders & lines */
+  --color-line:         rgba(198, 170, 76, 0.18);  /* gold-tinted border  */
+  --color-line-soft:    rgba(255, 255, 255, 0.06);  /* subtle separator    */
+  --color-line-hard:    rgba(255, 255, 255, 0.12);  /* visible border      */
+
+  /* Semantic status */
+  --color-success:      #4A8C6A;
+  --color-warning:      #C6AA4C;   /* reuses gold                         */
+  --color-error:        #9C4A4A;
+  --color-info:         #4A6A8C;
+
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────────────────────── */
+
+  /* Families */
+  --font-display: "Playfair Display", "Times New Roman", Georgia, serif;
+  --font-accent:  "Cormorant Garamond", "Times New Roman", Georgia, serif; /* italic accent only */
+  --font-sans:    "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+
+  /* Display / heading scale (fluid via clamp) */
+  --text-display-2xl: clamp(52px, 6.5vw,  90px);   /* hero H1            */
+  --text-display-xl:  clamp(40px, 5.5vw,  72px);   /* section hero       */
+  --text-display-lg:  clamp(32px, 4.0vw,  56px);   /* section title      */
+  --text-display-md:  clamp(26px, 3.0vw,  44px);   /* card / sub-heading */
+  --text-display-sm:  clamp(20px, 2.5vw,  32px);   /* small section head */
+
+  /* Body / UI scale (fixed) */
+  --text-xl:   20px;
+  --text-lg:   18px;
+  --text-md:   16px;
+  --text-base: 15px;
+  --text-sm:   14px;
+  --text-xs:   13px;
+  --text-2xs:  11px;
+  --text-3xs:  10px;
+
+  /* Weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+
+  /* Line heights */
+  --leading-none:    1.0;
+  --leading-tight:   1.1;
+  --leading-snug:    1.2;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+  --leading-loose:   1.8;
+
+  /* Letter spacing */
+  --tracking-tight:   -0.015em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.06em;
+  --tracking-wider:    0.12em;
+  --tracking-widest:   0.18em;
+  --tracking-caps:     0.28em;   /* uppercase eyebrow labels             */
+
+
+  /* ── SPACING ────────────────────────────────────────────────────────── */
+
+  --space-px:  1px;
+  --space-0-5: 2px;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-7:   28px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-14:  56px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-28:  112px;
+  --space-30:  120px;
+  --space-35:  140px;
+
+  /* Semantic layout tokens */
+  --section-pad-y:       120px;
+  --section-pad-y-md:    80px;
+  --section-pad-y-sm:    60px;
+
+  --container-max:       1240px;
+  --container-pad-x:     40px;
+  --container-pad-x-sm:  24px;
+
+
+  /* ── SHAPE ──────────────────────────────────────────────────────────── */
+
+  --radius-none: 0;
+  --radius-sm:   3px;
+  --radius-md:   6px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-2xl:  32px;
+  --radius-pill: 999px;
+  --radius-full: 50%;
+
+
+  /* ── MOTION ─────────────────────────────────────────────────────────── */
+
+  /* Easing curves */
+  --ease-standard:  cubic-bezier(0.25, 0.10, 0.25, 1.00);
+  --ease-decelerate: cubic-bezier(0.00, 0.00, 0.20, 1.00);
+  --ease-accelerate: cubic-bezier(0.40, 0.00, 1.00, 1.00);
+  --ease-sharp:      cubic-bezier(0.40, 0.00, 0.60, 1.00);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1.00);
+  --ease-power3:     cubic-bezier(0.22, 1.00, 0.36, 1.00);
+
+  /* Durations */
+  --duration-instant:  50ms;
+  --duration-fast:     150ms;
+  --duration-normal:   250ms;
+  --duration-slow:     400ms;
+  --duration-slower:   700ms;
+  --duration-crawl:    1000ms;
+  --duration-reveal:   1100ms;
+
+  /* Stagger increment (multiply by index) */
+  --stagger-base:      80ms;
+
+
+  /* ── SHADOW ─────────────────────────────────────────────────────────── */
+
+  --shadow-xs:      0 1px  2px rgba(0, 0, 0, 0.25);
+  --shadow-sm:      0 2px  6px rgba(0, 0, 0, 0.35);
+  --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg:      0 8px 32px rgba(0, 0, 0, 0.55);
+  --shadow-xl:      0 20px 60px rgba(0, 0, 0, 0.65);
+  --shadow-gold:    0 0 24px var(--color-gold-glow);
+  --shadow-gold-lg: 0 0 64px rgba(198, 170, 76, 0.18);
+
+
+  /* ── Z-INDEX LAYERS ─────────────────────────────────────────────────── */
+
+  --z-base:       0;
+  --z-raised:     10;
+  --z-dropdown:   100;
+  --z-sticky:     200;
+  --z-overlay:    500;
+  --z-modal:      1000;
+  --z-nav:        1000;
+  --z-toast:      1500;
+  --z-noise:      9990;   /* full-page noise texture overlay             */
+  --z-progress:   9999;   /* scroll progress bar                         */
+
+
+  /* ── BORDER WIDTHS ──────────────────────────────────────────────────── */
+
+  --border-width-thin:   1px;
+  --border-width-medium: 1.5px;
+  --border-width-thick:  2px;
+
+
+  /* ── BREAKPOINTS (reference only — use in @media queries) ───────────── */
+  /* --bp-sm:  640px  */
+  /* --bp-md:  768px  */
+  /* --bp-lg:  1024px */
+  /* --bp-xl:  1280px */
+  /* --bp-2xl: 1536px */
+
+
+  /* ── COMPONENT TOKENS ───────────────────────────────────────────────── */
+
+  /* Navigation */
+  --nav-height-default:    88px;
+  --nav-height-scrolled:   60px;
+  --nav-bg-scrolled:       rgba(11, 12, 14, 0.92);
+  --nav-blur-scrolled:     20px;
+
+  /* Buttons */
+  --btn-height-sm:   36px;
+  --btn-height-md:   44px;
+  --btn-height-lg:   52px;
+  --btn-pad-x-sm:    20px;
+  --btn-pad-x-md:    28px;
+  --btn-pad-x-lg:    36px;
+  --btn-font-size:   var(--text-2xs);
+  --btn-tracking:    var(--tracking-caps);
+  --btn-weight:      var(--weight-medium);
+
+  /* Cards */
+  --card-pad:        36px 32px;
+  --card-pad-sm:     28px 24px;
+  --card-hover-bg:   var(--color-bg-soft);
+
+  /* Form inputs */
+  --input-height:    48px;
+  --input-pad-x:     16px;
+  --input-bg:        var(--color-bg-elev);
+  --input-border:    var(--color-line-hard);
+  --input-border-focus: var(--color-gold);
+  --input-radius:    var(--radius-sm);
+  --input-font-size: var(--text-sm);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TAILWIND CSS v4 THEME INTEGRATION
+   Add this @theme block to your app/globals.css to expose all tokens as
+   Tailwind utilities (e.g. bg-bg-base, text-gold, font-display, etc.)
+   ───────────────────────────────────────────────────────────────────────── */
+/*
+@theme inline {
+
+  -- Colors --
+  --color-bg-base:      #0B0C0E;
+  --color-bg-soft:      #121212;
+  --color-bg-elev:      #181C24;
+  --color-bg-raised:    #1E2330;
+
+  --color-gold:         #C6AA4C;
+  --color-gold-soft:    #B09840;
+  --color-gold-dim:     rgba(198, 170, 76, 0.55);
+  --color-gold-glow:    rgba(198, 170, 76, 0.12);
+  --color-gold-line:    rgba(198, 170, 76, 0.18);
+  --color-gold-subtle:  rgba(198, 170, 76, 0.06);
+
+  --color-text:         #F5F3EF;
+  --color-text-dim:     #A8A090;
+  --color-text-mute:    #6E6960;
+  --color-text-inverse: #0B0C0E;
+
+  --color-line:         rgba(198, 170, 76, 0.18);
+  --color-line-soft:    rgba(255, 255, 255, 0.06);
+  --color-line-hard:    rgba(255, 255, 255, 0.12);
+
+  -- Fonts --
+  --font-display: "Playfair Display", "Times New Roman", Georgia, serif;
+  --font-accent:  "Cormorant Garamond", "Times New Roman", Georgia, serif; /* italic accent only */
+  --font-sans:    "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", monospace;
+
+  -- Font sizes --
+  --text-3xs:   10px;
+  --text-2xs:   11px;
+  --text-xs:    13px;
+  --text-sm:    14px;
+  --text-base:  15px;
+  --text-md:    16px;
+  --text-lg:    18px;
+  --text-xl:    20px;
+
+  -- Spacing (extend Tailwind's default scale) --
+  --spacing-section: 120px;
+  --spacing-section-md: 80px;
+  --spacing-section-sm: 60px;
+
+  -- Border radius --
+  --radius-sm:    3px;
+  --radius-md:    6px;
+  --radius-lg:    12px;
+  --radius-xl:    20px;
+  --radius-pill:  999px;
+}
+*/
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   NOISE TEXTURE UTILITY  (apply on body or a fixed overlay element)
+   ───────────────────────────────────────────────────────────────────────── */
+.texture-noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-noise);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   GOLD GRID TEXTURE UTILITY  (add to any section as ::before / ::after)
+   ───────────────────────────────────────────────────────────────────────── */
+.texture-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-gold-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-gold-subtle) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SECTION BACKGROUND TONAL JOURNEY
+   Sections descend from base → step-1 → step-2 then return to base.
+   This subtle shift creates visual breathing room between sections.
+
+   Usage:  <section class="bg-section-descend"> …
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* hero / default — pure base colour, no gradient */
+.bg-section-base {
+  background-color: var(--color-bg-base);
+}
+
+/* metrics-style — base → step-1 (slight cool lift going down) */
+.bg-section-descend {
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-base)  0%,
+    var(--color-bg-step-1) 100%
+  );
+}
+
+/* services-style — step-1 → step-2 (continuing the lift) */
+.bg-section-mid {
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-step-1) 0%,
+    var(--color-bg-step-2) 100%
+  );
+}
+
+/* testimonials / return — step-2 → base (return to dark) */
+.bg-section-return {
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-step-2) 0%,
+    var(--color-bg-base)   100%
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   HERO ATMOSPHERIC RADIAL
+   Two-layer radial: warm gold glow upper-right + dark vignette around edges.
+   Apply as ::before on the hero section (position: relative required).
+
+   Usage:  <section class="hero-atmosphere"> …
+   ───────────────────────────────────────────────────────────────────────── */
+.hero-atmosphere {
+  position: relative;
+}
+.hero-atmosphere::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 80% at 88% 55%,
+      rgba(198, 170, 76, 0.09), transparent 65%),
+    radial-gradient(ellipse 80% 80% at 50% 50%,
+      transparent 35%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CTA CENTRE RADIAL GLOW
+   Centred gold radial for CTA / final sections. Pairs with .texture-grid.
+   Apply as ::before on the CTA section (position: relative required).
+
+   Usage:  <section class="cta-glow texture-grid"> …
+   ───────────────────────────────────────────────────────────────────────── */
+.cta-glow {
+  position: relative;
+}
+.cta-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    rgba(198, 170, 76, 0.06), transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}

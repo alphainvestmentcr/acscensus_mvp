@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios — Ascensus Strategic</title>
+  <meta name="description" content="Servicios patrimoniales de Ascensus Strategic: asesoría bursátil, portafolios de inversión, ahorro, seguros, real estate, blindaje legal e innovación analítica.">
+  <meta name="theme-color" content="#0B0C0E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0C0E;
+      --bg-soft: #121212;
+      --bg-elev: #181C24;
+      --line: rgba(198,170,76,.18);
+      --line-soft: rgba(255,255,255,.06);
+      --gold: #C6AA4C;
+      --gold-soft: #B09840;
+      --gold-dim: rgba(198,170,76,.55);
+      --gold-glow: rgba(198,170,76,.12);
+      --text: #F5F3EF;
+      --text-dim: #A8A090;
+      --text-mute: #6E6960;
+      --serif: "Playfair Display","Times New Roman",serif;
+      --accent: "Cormorant Garamond","Times New Roman",serif;
+      --sans: "Montserrat",system-ui,-apple-system,sans-serif;
+      --maxw: 1240px;
+      --ease: cubic-bezier(.25,.1,.25,1);
+      --ease-out: cubic-bezier(0,0,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:linear-gradient(180deg,var(--bg) 0%,#0F1013 30%,#121416 60%,var(--bg) 100%);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    em { font-family: var(--accent); font-style: italic; font-size: 1.08em; line-height: inherit; }
+    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.028;mix-blend-mode:overlay}
+    #scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold-soft),var(--gold));z-index:1001;width:0;box-shadow:0 0 10px var(--gold-dim);transition:width .08s linear}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:28px 0;transition:background .4s,padding .4s,border-color .4s;border-bottom:1px solid transparent}
+    .nav.scrolled{background:rgba(11,12,14,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:16px 0;border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:.02em;color:var(--text)}
+    .brand-mark{height:40px;width:auto;display:block;object-fit:contain;transition:transform .5s var(--ease)}
+    .brand:hover .brand-mark{transform:scale(1.06)}
+    .brand-words span{color:var(--gold);font-family:var(--accent);font-style:italic}
+    .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+    .nav-links a{font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);position:relative;padding:6px 0;transition:color .25s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease-out)}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+    .nav-cta{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:12px 28px;border:1px solid var(--gold);border-radius:999px;transition:background .25s,color .25s,box-shadow .25s;cursor:pointer}
+    .nav-cta:hover{background:transparent;color:var(--gold);box-shadow:0 0 24px var(--gold-glow)}
+    .nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--text);width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer}
+    .nav-toggle svg{width:18px;height:18px;pointer-events:none}
+    .mobile-menu{display:none;flex-direction:column}
+    .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(11,12,14,.92);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px}
+    .modal-overlay.open{opacity:1;visibility:visible}
+    .modal-box{background:var(--bg-elev);border:1px solid var(--line);border-radius:4px;padding:52px 48px;width:min(520px,90vw);position:relative;transform:translateY(20px);transition:transform .3s var(--ease-out)}
+    .modal-overlay.open .modal-box{transform:translateY(0)}
+    .modal-close{position:absolute;top:20px;right:20px;background:transparent;border:1px solid var(--line-soft);color:var(--text-mute);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .25s}
+    .modal-close:hover{border-color:var(--gold);color:var(--gold)}
+    .modal-eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+    .modal-title{font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:32px;line-height:1.2}
+    .modal-title em{font-family:var(--accent);font-style:italic;color:var(--gold);font-size:1.08em}
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);margin-bottom:8px}
+    .form-group input,.form-group textarea{width:100%;background:var(--bg);border:1px solid var(--line-soft);color:var(--text);font-family:var(--sans);font-size:14px;font-weight:300;padding:14px 16px;border-radius:2px;outline:none;transition:border-color .25s}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--gold)}
+    .form-group textarea{resize:vertical;min-height:120px}
+    .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 120px;overflow:hidden;background:var(--bg) url('hero-bg.jpg') center/cover no-repeat}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 80% at 88% 55%,rgba(198,170,76,.09),transparent 65%),radial-gradient(ellipse 80% 80% at 50% 50%,transparent 35%,rgba(0,0,0,.45) 100%);pointer-events:none;z-index:0}
+    .hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
+    .hero>.container{width:100%;display:grid;grid-template-columns:55fr 45fr;position:relative;z-index:1}
+    .hero-inner{position:relative;z-index:2;grid-column:1;padding-right:56px;text-align:left}
+    .hero-bull{position:absolute;right:8%;bottom:0;height:92%;width:auto;object-fit:contain;pointer-events:none;z-index:1;-webkit-mask-image:linear-gradient(to left,#000 52%,transparent 100%);mask-image:linear-gradient(to left,#000 52%,transparent 100%);opacity:0}
+    .hero-bull.bull-live{animation:bull-breathe 6s ease-in-out infinite}
+    @keyframes bull-breathe{0%,100%{filter:drop-shadow(0 0 60px rgba(198,170,76,.20))}50%{filter:drop-shadow(0 0 110px rgba(198,170,76,.44))}}
+    .hero-line{position:fixed;left:40px;top:0;width:1px;height:100%;background:linear-gradient(to bottom,transparent 0%,var(--gold-dim) 15%,var(--gold-dim) 85%,transparent 100%);opacity:.35;z-index:1;pointer-events:none}
+    .scroll-dot{position:fixed;left:39px;top:15%;width:3px;height:50px;z-index:2;pointer-events:none;background:linear-gradient(to bottom,transparent,var(--gold) 40%,var(--gold) 60%,transparent);box-shadow:0 0 12px var(--gold-dim),0 0 24px rgba(198,170,76,.2);opacity:0;border-radius:2px}
+    .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:14px}
+    .eyebrow::before{content:'◆';font-size:4px;color:var(--gold);flex-shrink:0;line-height:1}
+    .hero h1{font-family:var(--serif);font-size:clamp(40px,5.5vw,70px);font-weight:300;line-height:1.1;letter-spacing:-.01em;margin-bottom:28px}
+    .hero p{font-size:18px;color:var(--text-dim);line-height:1.8;margin-bottom:44px}
+    .cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:16px 32px;border:1px solid;border-radius:999px;transition:all .3s var(--ease);cursor:pointer}
+    .btn-primary{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+    .btn-primary:hover{background:transparent;color:var(--gold);border-color:var(--gold)}
+    .btn-ghost{color:var(--text-dim);background:transparent;border-color:var(--line)}
+    .btn-ghost:hover{color:var(--gold);border-color:var(--gold-dim)}
+    .scroll-hint{position:absolute;bottom:40px;left:40px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute);display:flex;align-items:center;gap:12px}
+    .scroll-hint::before{content:'';width:1px;height:42px;background:linear-gradient(to bottom,var(--gold-dim),transparent);animation:scroll-line 2s ease infinite}
+    @keyframes scroll-line{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)}}
+    .metrics{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,var(--bg),#0F1013)}
+    .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .metric{padding:56px 40px;position:relative;text-align:center}
+    .metric+.metric::before{content:'';position:absolute;left:0;top:22%;bottom:22%;width:1px;background:var(--line)}
+    .metric-value{font-family:var(--serif);font-size:clamp(40px,4.5vw,60px);font-weight:300;color:var(--gold);line-height:1;margin-bottom:14px;letter-spacing:-.02em}
+    .metric-value sup{font-size:.42em;font-weight:400;vertical-align:super;color:var(--gold-dim)}
+    .metric-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute)}
+    .block{padding:120px 0}
+    .section-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:72px}
+    .section-tag{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+    .section-tag::before{content:'◆';font-size:4px;color:var(--gold);flex-shrink:0;line-height:1}
+    .section-tag--plain::before{content:none}
+    .section-title{font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:300;line-height:1.2;letter-spacing:-.01em}
+    .section-sub{font-size:15px;color:var(--text-dim);line-height:1.78;align-self:end}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+    .service{padding:44px 36px;background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .35s}
+    .service::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-out)}
+    .service:hover{background:var(--bg-soft)}
+    .service:hover::after{transform:scaleX(1)}
+    .service:hover .arrow-icon{transform:translate(5px,-5px);color:var(--gold)}
+    .num{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:24px}
+    .service h3{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:16px;line-height:1.3}
+    .service p{font-size:14px;color:var(--text-dim);line-height:1.72;flex:1}
+    .arrow-icon{margin-top:28px;align-self:flex-end;color:var(--text-mute);transition:transform .35s var(--ease),color .35s}
+    .arrow-icon svg{width:20px;height:20px}
+    .service-coming .num{color:var(--text-mute)}
+    .service-coming h3{color:var(--text-dim)}
+    .badge-soon{display:inline-block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:middle}
+    .philosophy{background:#121416;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+    .philosophy-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:88px;align-items:start}
+    .quote-block{position:relative;padding-top:20px}
+    .quote-mark{position:absolute;top:-30px;left:-8px;font-family:var(--accent);font-style:italic;font-size:200px;line-height:1;color:var(--gold);opacity:.07;pointer-events:none;user-select:none}
+    blockquote{font-family:var(--accent);font-size:clamp(19px,2.2vw,27px);font-style:italic;font-weight:300;line-height:1.58;color:var(--text);margin-bottom:32px;position:relative}
+    cite{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);font-style:normal;display:flex;align-items:center;gap:14px}
+    cite::before{content:'';width:24px;height:1px;background:var(--gold-dim)}
+    .pillars{display:flex;flex-direction:column}
+    .pillar{display:flex;gap:24px;padding:28px 0;border-bottom:1px solid var(--line-soft)}
+    .pillar:first-child{border-top:1px solid var(--line-soft)}
+    .pillar-num{font-family:var(--accent);font-style:italic;font-size:20px;color:var(--gold-dim);min-width:28px;padding-top:2px}
+    .pillar h4{font-family:var(--serif);font-size:18px;font-weight:400;margin-bottom:8px}
+    .pillar p{font-size:14px;color:var(--text-dim);line-height:1.72}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+    .process-grid::before{content:'';position:absolute;top:27px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);height:1px;background:var(--line);z-index:0}
+    .process-line{position:absolute;top:27px;left:calc(12.5% + 14px);height:1px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));z-index:1;width:0;box-shadow:0 0 10px var(--gold-dim);transition:width 1.4s var(--ease-out)}
+    .process-line.animated{width:calc(75% - 28px)}
+    .step{padding:70px 28px 40px;position:relative;z-index:2;text-align:center}
+    .step-dot{width:54px;height:54px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-family:var(--accent);font-style:italic;font-size:18px;color:var(--text-mute);background:var(--bg);transition:border-color .5s,color .5s,background .5s,box-shadow .5s;position:relative;z-index:2}
+    .step.lit .step-dot{border-color:var(--gold);color:var(--gold);background:var(--bg-elev);box-shadow:0 0 22px var(--gold-glow)}
+    .step h4{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:12px}
+    .step p{font-size:14px;color:var(--text-dim);line-height:1.72}
+    .final-cta{padding:140px 0;position:relative;overflow:hidden;background:var(--bg)}
+    .final-cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
+    .final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(198,170,76,.06),transparent 70%);pointer-events:none}
+    .final-cta-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1}
+    .final-cta h2{font-family:var(--serif);font-size:clamp(32px,4vw,54px);font-weight:300;line-height:1.2;margin-bottom:24px;letter-spacing:-.01em}
+    .final-cta p{font-size:15px;color:var(--text-dim);line-height:1.78;margin-bottom:44px}
+    footer{padding:88px 0 44px;border-top:1px solid var(--line-soft);background:#080809}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:64px}
+    .footer-brand{font-family:var(--serif);font-size:26px;font-weight:400;letter-spacing:.02em;margin-bottom:16px;display:block}
+    .footer-brand span{font-family:var(--accent);font-style:italic;color:var(--gold)}
+    .footer-tag{font-size:13px;color:var(--text-mute);line-height:1.78;max-width:280px}
+    .footer-col h5{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+    .footer-col li{font-size:13px;color:var(--text-dim);line-height:1.6}
+    .footer-col .label{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-bottom:3px}
+    .footer-col a{color:var(--text-dim);transition:color .25s}
+    .footer-col a:hover{color:var(--gold)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--text-mute)}
+    .legal{display:flex;gap:24px}
+    .legal a{color:var(--text-mute);transition:color .25s}
+    .legal a:hover{color:var(--text-dim)}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .delay-1{transition-delay:.1s}
+    .delay-2{transition-delay:.2s}
+    .delay-3{transition-delay:.3s}
+    .delay-4{transition-delay:.4s}
+    .subhero{position:relative;padding:180px 0 100px;overflow:hidden;background:var(--bg)}
+    .subhero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 30%,rgba(198,170,76,.06),transparent 70%);pointer-events:none}
+    .subhero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.03) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+    .subhero-inner{position:relative;z-index:1;max-width:700px}
+    .profiles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:56px}
+    .profile{padding:52px 40px;background:var(--bg);display:flex;flex-direction:column;gap:20px;transition:background .35s}
+    .profile:hover{background:var(--bg-soft)}
+    .profile-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute)}
+    .profile-name{font-family:var(--serif);font-size:28px;font-weight:400}
+    .profile-return{font-family:var(--serif);font-size:clamp(36px,4vw,52px);font-weight:300;color:var(--gold);line-height:1;letter-spacing:-.02em}
+    .profile-return sup{font-size:.4em;vertical-align:super;color:var(--gold-dim)}
+    .profile-instruments{font-size:13px;color:var(--text-dim);line-height:1.7;border-top:1px solid var(--line-soft);padding-top:20px}
+    .profile-priority{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim);margin-top:auto}
+    .alianzas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:56px}
+    .alianza{padding:44px 36px;background:var(--bg);transition:background .35s;display:flex;flex-direction:column;gap:16px}
+    .alianza:hover{background:var(--bg-soft)}
+    .alianza-logo{height:48px;display:flex;align-items:center}
+    .alianza-logo img{max-height:40px;max-width:160px;object-fit:contain;filter:brightness(0) invert(.7);transition:filter .3s}
+    .alianza:hover .alianza-logo img{filter:brightness(0) invert(1)}
+    .alianza-logo-text{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--text-dim);letter-spacing:.04em}
+    .alianza h4{font-family:var(--serif);font-size:17px;font-weight:400}
+    .alianza p{font-size:13px;color:var(--text-mute);line-height:1.68}
+    .alianza-badge{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim);display:inline-flex;align-items:center;gap:6px}
+    .alianza-badge::before{content:'◆';font-size:4px}
+    @media(prefers-reduced-motion:reduce){.hero-bull{animation:none!important}.scroll-hint::before{animation:none}}
+    @supports not (backdrop-filter:blur(1px)){.nav.scrolled{background:rgba(11,12,14,.97)}}
+    @media(max-width:1024px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .process-grid{grid-template-columns:repeat(2,1fr)}
+      .process-grid::before,.process-line{display:none}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .metrics-grid{grid-template-columns:repeat(2,1fr)}
+      .alianzas-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:768px){
+      .section-head{grid-template-columns:1fr}
+      .philosophy-grid{grid-template-columns:1fr;gap:48px}
+      .services-grid{grid-template-columns:1fr}
+      .metrics-grid{grid-template-columns:1fr}
+      .metric+.metric::before{display:none}
+      .metric{border-top:1px solid var(--line-soft)}
+      .nav-links,.nav-cta{display:none}
+      .nav-toggle{display:flex}
+      .nav.mobile-open .mobile-menu{display:flex;flex-direction:column;gap:0;padding:12px 0 24px;border-top:1px solid var(--line-soft)}
+      .mobile-menu a{padding:16px 40px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--line-soft);transition:color .25s}
+      .mobile-menu a:hover{color:var(--gold)}
+      .footer-grid{grid-template-columns:1fr;gap:32px}
+      .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+      .hero>.container{grid-template-columns:1fr}
+      .hero-inner{padding-right:0}
+      .hero-bull{opacity:.18!important;right:-15%;height:70%}
+      .hero-line,.scroll-dot{display:none}
+      .modal-box{padding:36px 24px}
+      .profiles-grid{grid-template-columns:1fr}
+      .alianzas-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .container{padding:0 24px}
+      .cta-row{flex-direction:column;align-items:stretch}
+      .btn{justify-content:center}
+      .process-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div id="scroll-progress"></div>
+
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Ascensus Strategic">
+        <img class="brand-mark" src="letra_logo.png" alt="Ascensus Strategic" width="197" height="240">
+        <span class="brand-words">Ascensus <span>Strategic</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html" class="active">Servicios</a></li>
+        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+      </ul>
+      <button class="nav-cta" data-modal-open>Agendar consulta</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+    <div class="container">
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="quienes-somos.html">Quiénes Somos</a>
+        <button data-modal-open class="btn btn-primary" style="margin-top:20px;align-self:flex-start;border:none">Agendar consulta</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="subhero" aria-labelledby="servicios-title">
+      <div class="container subhero-inner">
+        <div class="eyebrow reveal">Soluciones patrimoniales</div>
+        <h1 id="servicios-title" class="section-title reveal delay-1" style="font-size:clamp(42px,5vw,68px);margin-bottom:24px">Servicios diseñados para su <em>patrimonio</em></h1>
+        <p class="section-sub reveal delay-2" style="max-width:640px">Cada estrategia se construye a la medida del perfil, los objetivos y el horizonte de cada cliente.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-tag">Portafolio de soluciones</div>
+            <h2 class="section-title">Una arquitectura completa para proteger, estructurar y hacer crecer su capital.</h2>
+          </div>
+          <p class="section-sub">Integramos inversión, ahorro, protección, real estate y blindaje jurídico en una propuesta coherente, independiente y diseñada alrededor de cada patrimonio.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service reveal">
+            <div class="num">01 / Inversión</div>
+            <h3>Asesoría Bursátil</h3>
+            <p>Orientación experta en mercados de valores para seleccionar instrumentos, oportunidades y ventanas de entrada con criterio técnico, prudencia y visión de largo plazo.</p>
+            <div class="arrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></div>
+          </article>
+          <article class="service reveal delay-1">
+            <div class="num">02 / Inversión</div>
+            <h3>Portafolios de Inversión</h3>
+            <p>Construcción de carteras diversificadas según perfil, plazo y liquidez, combinando disciplina de asignación, monitoreo constante y rebalanceo estratégico.</p>
+            <div class="arrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></div>
+          </article>
+          <article class="service reveal delay-2">
+            <div class="num">03 / Ahorro</div>
+            <h3>Planes de Ahorro</h3>
+            <p>Programas estructurados de ahorro disciplinado que transforman objetivos concretos en hábitos financieros sostenibles y acumulación progresiva de capital.</p>
+            <div class="arrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></div>
+          </article>
+          <article class="service reveal">
+            <div class="num">04 / Protección</div>
+            <h3>Seguros de Vida con Ahorro</h3>
+            <p>Soluciones que combinan protección de vida, acumulación de valor y planificación patrimonial para resguardar a la familia y fortalecer el legado.</p>
+            <div class="arrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></div>
+          </article>
+          <article class="service reveal delay-1">
+            <div class="num">05 / Bienes raíces</div>
+            <h3>Real Estate</h3>
+            <p>Inversión en bienes raíces residenciales y comerciales con enfoque patrimonial, búsqueda selectiva de oportunidades y acompañamiento en todo el proceso.</p>
+            <div class="arrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></div>
+          </article>
+          <article class="service reveal delay-2">
+            <div class="num">06 / Legal</div>
+            <h3>Asesoría Legal de Activos</h3>
+            <p>Protección jurídica de propiedades, sociedades y estructuras patrimoniales mediante aliados expertos en planificación sucesoria, fideicomisos y blindaje legal.</p>
+            <div class="arrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></div>
+          </article>
+          <article class="service service-coming reveal" style="opacity:.65">
+            <div class="num">07 / Tecnología</div>
+            <h3>IA &amp; Análisis de Datos <span class="badge-soon">Próximamente</span></h3>
+            <p>Asesoría en IA aplicada, inteligencia patrimonial y análisis de datos para elevar la capacidad de decisión con modelado, automatización y lectura estratégica de información.</p>
+            <div class="arrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-tag">Perfiles de inversión</div>
+            <h2 class="section-title">Encontramos el perfil que <em>encaja</em> con sus metas</h2>
+          </div>
+          <p class="section-sub">Cada perfil responde a un balance entre retorno objetivo y tolerancia al riesgo.</p>
+        </div>
+        <div class="profiles-grid">
+          <article class="profile reveal">
+            <div class="profile-tag">Perfil estratégico</div>
+            <h3 class="profile-name">Conservador</h3>
+            <div class="profile-return">6–8%</div>
+            <p class="profile-instruments">Renta fija, seguros con ahorro y planes estructurados.</p>
+            <div class="profile-priority">Preservación del capital</div>
+          </article>
+          <article class="profile reveal delay-1">
+            <div class="profile-tag">Perfil estratégico</div>
+            <h3 class="profile-name">Moderado</h3>
+            <div class="profile-return">10–14%</div>
+            <p class="profile-instruments">Combinación de renta fija, variable y real estate.</p>
+            <div class="profile-priority">Crecimiento moderado</div>
+          </article>
+          <article class="profile reveal delay-2">
+            <div class="profile-tag">Perfil estratégico</div>
+            <h3 class="profile-name">Agresivo</h3>
+            <div class="profile-return">16–20%</div>
+            <p class="profile-instruments">Alta exposición a renta variable y mercados internacionales.</p>
+            <div class="profile-priority">Máximo crecimiento</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-tag">Alianzas</div>
+            <h2 class="section-title">Respaldados por <em>socios</em> de clase mundial</h2>
+          </div>
+          <p class="section-sub">Trabajamos con las mejores instituciones reguladas para ofrecer soluciones de primer nivel.</p>
+        </div>
+        <div class="alianzas-grid">
+          <article class="alianza reveal">
+            <div class="alianza-logo"><span class="alianza-logo-text">Prival Securities</span></div>
+            <h4>Prival Securities</h4>
+            <p>Intermediación bursátil regulada por SUGEVAL.</p>
+            <span class="alianza-badge">Patrimonio mín. $300,000</span>
+          </article>
+          <article class="alianza reveal delay-1">
+            <div class="alianza-logo"><span class="alianza-logo-text">Pan-American Life (PALIG)</span></div>
+            <h4>Pan-American Life (PALIG)</h4>
+            <p>Seguros de vida patrimoniales.</p>
+            <span class="alianza-badge">AM Best 'A' · 49+ países</span>
+          </article>
+          <article class="alianza reveal delay-2">
+            <div class="alianza-logo"><span class="alianza-logo-text">BMI Financial Group</span></div>
+            <h4>BMI Financial Group</h4>
+            <p>Seguros de vida universales e indexados.</p>
+            <span class="alianza-badge">AM Best 'A'</span>
+          </article>
+          <article class="alianza reveal">
+            <div class="alianza-logo"><span class="alianza-logo-text">Investors Trust</span></div>
+            <h4>Investors Trust</h4>
+            <p>Líder global en productos unit-linked.</p>
+            <span class="alianza-badge">AM Best 'A-' · desde $10,000</span>
+          </article>
+          <article class="alianza reveal delay-1">
+            <div class="alianza-logo"><span class="alianza-logo-text">Red de Real Estate</span></div>
+            <h4>Red de Real Estate</h4>
+            <p>Agentes certificados para inversión residencial y comercial.</p>
+            <span class="alianza-badge">Nacional e internacional</span>
+          </article>
+          <article class="alianza reveal delay-2">
+            <div class="alianza-logo"><span class="alianza-logo-text">Abogados Aliados</span></div>
+            <h4>Abogados Aliados</h4>
+            <p>Estructuración de fideicomisos y planificación sucesoria.</p>
+            <span class="alianza-badge">Blindaje patrimonial</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-brand">Ascensus <span>Strategic</span></a>
+          <p class="footer-tag">Oficina de Administración Patrimonial · Escazú, Costa Rica · Asesoría financiera independiente para familias, empresarios e inversionistas.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Correo</h5>
+          <ul>
+            <li><span class="label">General</span><a href="mailto:info@ascentrategic.com">info@ascentrategic.com</a></li>
+            <li><span class="label">Director</span><a href="mailto:erojas@ascentrategic.com">erojas@ascentrategic.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Teléfonos</h5>
+          <ul>
+            <li><span class="label">Principal</span><a href="tel:+50688158332">(506) 8815-8332</a></li>
+            <li><span class="label">Línea Premium</span><a href="tel:+50683110695">(506) 8311-0695</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Oficina</h5>
+          <ul>
+            <li>Escazú, Edificio Corporativo<br>Centro 27, 3er piso</li>
+            <li><span class="label">Horario</span>Lun–Vie 8:00 AM – 5:00 PM</li>
+            <li>Solo con cita previa</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Ascensus Strategic. Todos los derechos reservados.</span>
+        <div class="legal">
+          <a href="#">Aviso legal</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Cumplimiento</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">✕</button>
+      <div class="modal-eyebrow">Consulta privada</div>
+      <h3 class="modal-title" id="modalTitle">Agendar su <em>consulta</em></h3>
+      <form onsubmit="return false">
+        <div class="form-group"><label for="m-nombre">Nombre completo</label><input id="m-nombre" type="text" name="nombre" placeholder="Su nombre" required></div>
+        <div class="form-group"><label for="m-email">Correo electrónico</label><input id="m-email" type="email" name="email" placeholder="su@correo.com" required></div>
+        <div class="form-group"><label for="m-msg">Mensaje</label><textarea id="m-msg" name="mensaje" placeholder="¿En qué podemos ayudarle?"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Enviar solicitud</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const prog = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      if(prog) prog.style.width = pct + '%';
+    }, {passive:true});
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, {passive:true});
+
+    const dot = document.getElementById('scrollDot');
+    if(dot) {
+      window.addEventListener('scroll', () => {
+        const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        dot.style.top = (15 + pct * 55) + '%';
+        dot.style.opacity = window.scrollY > 80 ? 1 : 0;
+      }, {passive:true});
+    }
+
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if(navToggle) {
+      navToggle.addEventListener('click', () => {
+        nav.classList.toggle('mobile-open');
+      });
+    }
+
+    const modal = document.getElementById('modal');
+    const openBtns = document.querySelectorAll('[data-modal-open]');
+    const closeBtn = document.getElementById('closeModal');
+    openBtns.forEach(b => b.addEventListener('click', () => modal.classList.add('open')));
+    if(closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+    if(modal) modal.addEventListener('click', e => { if(e.target===modal) modal.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if(e.key==='Escape') modal && modal.classList.remove('open'); });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, {threshold: 0.1});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      const start = parseInt(el.dataset.start || 0);
+      const duration = 1800;
+      const startTime = performance.now();
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(start + (target - start) * ease);
+        if(progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) {
+          e.target.querySelectorAll('.count').forEach(animateCounter);
+          counterObs.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.3});
+    document.querySelectorAll('.metrics').forEach(el => counterObs.observe(el));
+
+    const processGrid = document.getElementById('processGrid');
+    const processLine = document.getElementById('processLine');
+    if(processGrid && processLine) {
+      const stepObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if(e.isIntersecting) {
+            processLine.classList.add('animated');
+            processGrid.querySelectorAll('.step').forEach((s,i) => {
+              setTimeout(() => s.classList.add('lit'), i * 300 + 200);
+            });
+            stepObs.unobserve(e.target);
+          }
+        });
+      }, {threshold: 0.3});
+      stepObs.observe(processGrid);
+    }
+
+    const bull = document.getElementById('heroBull');
+    if(bull) {
+      bull.addEventListener('load', () => {
+        bull.style.transition = 'opacity 1.2s ease';
+        bull.style.opacity = '1';
+        bull.classList.add('bull-live');
+      });
+      if(bull.complete) {
+        bull.style.transition = 'opacity 1.2s ease';
+        bull.style.opacity = '1';
+        bull.classList.add('bull-live');
+      }
+    }
+  </script>
+</body>
+</html>
