@@ -200,8 +200,9 @@
     .subhero-inner{position:relative;z-index:1;max-width:700px}
     .socio-section{background:linear-gradient(180deg,#0F1013,#121416)}
     .socio-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:88px;align-items:start}
-    .socio-photo{position:relative}
-    .socio-photo img{width:100%;border-radius:2px;object-fit:cover;max-width:420px}
+    .socio-photo{position:relative;animation:socio-fade 1s ease-out 0.2s both}
+    @keyframes socio-fade{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .socio-photo img{width:100%;height:auto;display:block;border-radius:2px;max-width:420px}
     .socio-photo::after{content:'';position:absolute;inset:-12px -12px 12px 12px;border:1px solid var(--gold-dim);border-radius:2px;z-index:-1}
     .socio-nombre{font-family:var(--serif);font-size:32px;font-weight:400;margin-bottom:8px;line-height:1.2}
     .socio-titulo{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
@@ -333,7 +334,7 @@
           <p class="section-sub">Una trayectoria construida entre banca, mercado de capitales y administración de inversiones para clientes privados, con foco en preservar y hacer crecer patrimonios complejos.</p>
         </div>
         <div class="socio-grid">
-          <div class="socio-photo reveal delay-1">
+          <div class="socio-photo">
             <img src="erick.png" alt="Eric Rojas Z." width="840" height="1120">
           </div>
           <div class="reveal delay-2">
