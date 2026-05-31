@@ -115,7 +115,7 @@
     .btn-primary:hover{background:transparent;color:var(--gold);border-color:var(--gold)}
     .btn-ghost{color:var(--text-dim);background:transparent;border-color:var(--line)}
     .btn-ghost:hover{color:var(--gold);border-color:var(--gold-dim)}
-    .scroll-hint{position:absolute;bottom:40px;left:40px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute);display:flex;align-items:center;gap:12px}
+    .scroll-hint{display:none}
     .scroll-hint::before{content:'';width:1px;height:42px;background:linear-gradient(to bottom,var(--gold-dim),transparent);animation:scroll-line 2s ease infinite}
     @keyframes scroll-line{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)}}
     .metrics{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,#0A0A0A,#0F0F11)}
