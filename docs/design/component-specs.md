@@ -31,10 +31,10 @@
 
 | Principle | Application |
 |-----------|-------------|
-| **Darkness = gravitas** | Near-black canvas (`#0B0C0E`) grounds every page. Never use white or light-grey backgrounds. |
+| **Darkness = gravitas** | Near-black canvas (`#0A0A0A`) grounds every page. Never use white or light-grey backgrounds. |
 | **Gold = distinction** | `#C6AA4C` is reserved for accent, never used as background fill (except on primary buttons). |
-| **Serif = authority** | Cormorant Garamond carries all display headings. Use italics to add warmth and personality. |
-| **Sans = clarity** | DM Sans weight 300 handles all body copy. Weight 500 for UI labels and uppercase tracking. |
+| **Serif = authority** | Playfair Display / Cormorant Garamond carry all display headings. Use italics to add warmth and personality. |
+| **Sans = clarity** | Montserrat weight 300 handles all body copy. Weight 500 for UI labels and uppercase tracking. |
 | **Restraint** | One animation per section. One gold element per component. Negative space is intentional. |
 | **Angular by default** | Cards and section containers have zero border radius. Pill radius is reserved for interactive elements. |
 
@@ -42,31 +42,53 @@
 
 ## Font Setup
 
-Add to `app/layout.tsx`:
+Fonts loaded via Google Fonts (add to `<head>`):
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+```
+
+CSS variables:
+```css
+--font-display: "Playfair Display", "Times New Roman", serif;   /* section headings */
+--font-accent:  "Cormorant Garamond", "Times New Roman", serif; /* italic accents */
+--font-sans:    "Montserrat", system-ui, -apple-system, sans-serif; /* body / UI */
+```
+
+For Next.js App Router, add to `app/layout.tsx`:
 
 ```tsx
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
+import { Montserrat, Playfair_Display, Cormorant_Garamond } from 'next/font/google';
 
-const cormorant = Cormorant_Garamond({
+const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
 });
 
-const dmSans = DM_Sans({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
-  style: ['normal', 'italic'],
-  axes: ['opsz'],
-  variable: '--font-sans',
+  style: ['italic'],
+  variable: '--font-accent',
   display: 'swap',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="es" className={`${montserrat.variable} ${playfair.variable} ${cormorant.variable}`}>
       <body>{children}</body>
     </html>
   );
@@ -82,8 +104,8 @@ Add to `app/globals.css` after `@import "tailwindcss"`:
 ```css
 @theme inline {
   /* Backgrounds */
-  --color-bg-base:    #0B0C0E;
-  --color-bg-soft:    #111318;
+  --color-bg-base:    #0A0A0A;
+  --color-bg-soft:    #121212;
   --color-bg-elev:    #181C24;
   --color-bg-raised:  #1E2330;
 
@@ -96,10 +118,10 @@ Add to `app/globals.css` after `@import "tailwindcss"`:
   --color-gold-subtle: rgba(198, 170, 76, 0.06);
 
   /* Text */
-  --color-text:       #E8E0CE;
+  --color-text:       #F5F3EF;
   --color-text-dim:   #A8A090;
   --color-text-mute:  #6E6960;
-  --color-text-inverse: #0B0C0E;
+  --color-text-inverse: #0A0A0A;
 
   /* Lines */
   --color-line:       rgba(198, 170, 76, 0.18);
@@ -200,10 +222,10 @@ interface NavProps {
 
 ### Visual layers (bottom → top)
 
-1. `background: --color-bg-base`
-2. Radial gradient glow behind image: `radial-gradient(ellipse 55% 80% at 88% 55%, rgba(198,162,39,.09), transparent 65%)`
-3. Vignette: `radial-gradient(ellipse 80% 80% at 50% 50%, transparent 35%, rgba(0,0,0,.45) 100%)`
-4. Gold grid texture (::after)
+1. `background: #0A0A0A` (`--color-bg-base`)
+2. Radial gold glow behind image: `radial-gradient(ellipse 55% 80% at 88% 55%, rgba(198,170,76,.06), transparent 65%)`
+3. Vignette: `radial-gradient(ellipse 80% 80% at 50% 50%, transparent 35%, rgba(0,0,0,.18) 100%)`
+4. Animated canvas grid (`<Squares>` component — diagonal, 64px cells, `borderColor="rgba(198,170,76,0.20)"`)
 5. Content grid (z-index 1)
 6. Decorative image (right column, mask-image fade to left)
 
@@ -226,6 +248,7 @@ grid-template-columns: 55fr 45fr;
   right: 8%;
   bottom: 0;
   height: 92%;
+  width: auto;
   object-fit: contain;
   mask-image: linear-gradient(to left, #000 52%, transparent 100%);
   /* Breathing animation */
@@ -233,10 +256,14 @@ grid-template-columns: 55fr 45fr;
 }
 
 @keyframes hero-breathe {
-  0%, 100% { filter: drop-shadow(0 0 60px rgba(198,162,39,.20)); }
-  50%       { filter: drop-shadow(0 0 110px rgba(198,162,39,.44)); }
+  0%, 100% { filter: drop-shadow(0 0 60px rgba(198,170,76,.20)); }
+  50%       { filter: drop-shadow(0 0 110px rgba(198,170,76,.44)); }
 }
 ```
+
+> **Intrinsic dimensions**: use `width="756" height="1024"` (portrait). Place as a **direct child of `.hero`**, before `.container`, so `position:absolute` stacks independently of the content grid.
+
+> **Animated canvas grid**: the `<Squares>` canvas component sits in a `.grid-canvas-wrap{position:absolute;inset:0;z-index:0}` wrapper, also a direct child of `.hero`, before the image. Pass `borderColor="rgba(198,170,76,0.20)"`, `squareSize={64}`, `direction="diagonal"`, `speed={0.3}`.
 
 ### Hero line (left edge decoration)
 
@@ -283,7 +310,7 @@ On scroll entry, values animate from 0 to target using `gsap.to({ val: 0 }, { va
 ### Background
 
 ```css
-background: linear-gradient(180deg, --color-bg-base, #0F1014);
+background: linear-gradient(180deg, #0A0A0A, #0F0F11);
 border-top: 1px solid --color-line-soft;
 border-bottom: 1px solid --color-line-soft;
 ```
@@ -469,10 +496,12 @@ overflow: hidden;
 /* Radial gold glow behind */
 background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(198,170,76,.06), transparent 70%);
 
-/* Gold grid overlay */
+/* Animated canvas grid — use <Squares> component at z-index 0 */
+/* Params: borderColor="rgba(198,170,76,0.20)" squareSize={64} direction="diagonal" speed={0.3} */
+/* Static CSS fallback (non-React): */
 background-image:
-  linear-gradient(rgba(198,170,76,.04) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(198,170,76,.04) 1px, transparent 1px);
+  linear-gradient(rgba(198,170,76,.06) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(198,170,76,.06) 1px, transparent 1px);
 background-size: 64px 64px;
 ```
 
@@ -541,17 +570,19 @@ margin-bottom: 24px;
 | Size | Height | Padding-X | Font size |
 |------|--------|-----------|-----------|
 | `sm` | 36px | 20px | 10px |
-| default | 44px | 28px | 11px |
-| `lg` | 52px | 36px | 11px |
+| default | 44px | **40px** | 11px |
+| `lg` | 52px | 40px | 11px |
 
 ### Common properties (all variants)
 
 ```css
 border-radius: 999px;
-font-family: --font-sans;
+font-family: --font-sans;    /* Montserrat */
 font-weight: 500;
-letter-spacing: 0.18em;
+letter-spacing: 0.16em;
 text-transform: uppercase;
+font-size: 11px;
+padding: 16px 40px;
 transition: background 250ms ease, color 250ms ease, box-shadow 250ms ease;
 ```
 

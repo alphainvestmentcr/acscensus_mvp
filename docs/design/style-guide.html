@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,12 @@
   <style>
     /* ── DESIGN TOKENS ─────────────────────────────────────────────────── */
     :root {
-      --bg:            #0B0C0E;
+      --bg:            #0A0A0A;
+      --bg-step-1:     #0F0F11;
+      --bg-step-2:     #121214;
+      --color-bg-base:   #0A0A0A;
+      --color-bg-step-1: #0F0F11;
+      --color-bg-step-2: #121214;
       --bg-soft:       #121212;
       --bg-elev:       #181C24;
       --bg-raised:     #1E2330;
@@ -143,30 +148,30 @@
     .btn {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--sans); font-size: 11px; font-weight: 500;
-      letter-spacing: .18em; text-transform: uppercase;
-      padding: 0 28px; height: 44px; border: 1px solid; border-radius: 999px;
+      letter-spacing: .16em; text-transform: uppercase;
+      padding: 0 40px; height: 44px; border: 1px solid; border-radius: 999px;
       cursor: pointer; text-decoration: none;
       transition: background .25s var(--ease), color .25s var(--ease), box-shadow .25s var(--ease);
     }
-    .btn-primary { color: #0B0C0E; background: var(--gold); border-color: var(--gold); }
+    .btn-primary { color: #0A0A0A; background: var(--gold); border-color: var(--gold); }
     .btn-primary:hover { background: transparent; color: var(--gold); box-shadow: 0 0 24px var(--gold-glow); }
     .btn-ghost  { color: var(--text-dim); background: transparent; border-color: var(--line-hard); }
     .btn-ghost:hover  { color: var(--gold); border-color: var(--gold-dim); }
     .btn-outline { color: var(--gold); background: transparent; border-color: var(--gold-line); }
     .btn-outline:hover { background: var(--gold-subtle); box-shadow: 0 0 20px var(--gold-glow); }
     .btn-sm { height: 36px; padding: 0 20px; font-size: 10px; }
-    .btn-lg { height: 52px; padding: 0 36px; font-size: 11px; }
+    .btn-lg { height: 52px; padding: 0 40px; font-size: 11px; }
     .btn-icon {
       width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--gold-line);
       color: var(--gold); background: transparent; display: inline-flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all .3s var(--ease);
     }
-    .btn-icon:hover { background: var(--gold); color: #0B0C0E; box-shadow: 0 0 24px var(--gold-glow); }
+    .btn-icon:hover { background: var(--gold); color: #0A0A0A; box-shadow: 0 0 24px var(--gold-glow); }
     .btn-disabled { opacity: .4; cursor: not-allowed; pointer-events: none; }
 
     /* ── NAV DEMO ──────────────────────────────────────────────────────── */
     .nav-demo {
-      background: rgba(11,12,14,.9); backdrop-filter: blur(20px);
+      background: rgba(10,10,10,.9); backdrop-filter: blur(20px);
       border: 1px solid var(--line-soft); border-radius: 8px;
       padding: 16px 28px; display: flex; align-items: center; justify-content: space-between;
     }
@@ -285,7 +290,7 @@
       font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
       padding: 3px 10px; border-radius: 3px;
     }
-    .badge-gold    { color: #0B0C0E; background: var(--gold); }
+    .badge-gold    { color: #0A0A0A; background: var(--gold); }
     .badge-outline { color: var(--gold); border: 1px solid var(--gold-line); }
     .badge-mute    { color: var(--text-mute); background: var(--bg-raised); }
         em { font-family: var(--accent); font-style: italic; font-size: 1.08em; line-height: inherit; }
@@ -411,8 +416,8 @@
       <h3 class="subsection-title" style="margin-top:0">Backgrounds</h3>
       <div class="token-grid">
         <div class="token-chip">
-          <div class="token-swatch" style="--sw:#0B0C0E;border-bottom:1px solid var(--line-soft)"></div>
-          <div class="token-info"><div class="token-name">--color-bg-base</div><div class="token-value">#0B0C0E</div><div class="token-label">Page canvas</div></div>
+          <div class="token-swatch" style="--sw:#0A0A0A;border-bottom:1px solid var(--line-soft)"></div>
+          <div class="token-info"><div class="token-name">--color-bg-base</div><div class="token-value">#0A0A0A</div><div class="token-label">Page canvas</div></div>
         </div>
         <div class="token-chip">
           <div class="token-swatch" style="--sw:#121212;border-bottom:1px solid var(--line-soft)"></div>
@@ -471,8 +476,8 @@
           <div class="token-info"><div class="token-name">--color-text-mute</div><div class="token-value">#6E6960</div><div class="token-label">Tertiary / disabled</div></div>
         </div>
         <div class="token-chip">
-          <div class="token-swatch" style="--sw:#0B0C0E;border:1px solid var(--line-soft)"></div>
-          <div class="token-info"><div class="token-name">--color-text-inverse</div><div class="token-value">#0B0C0E</div><div class="token-label">On bright surfaces</div></div>
+          <div class="token-swatch" style="--sw:#0A0A0A;border:1px solid var(--line-soft)"></div>
+          <div class="token-info"><div class="token-name">--color-text-inverse</div><div class="token-value">#0A0A0A</div><div class="token-label">On bright surfaces</div></div>
         </div>
       </div>
 
@@ -873,7 +878,7 @@ scrolled: background rgba(11,12,14,.92) · backdrop-filter blur(20px)
       <h2 class="section-title">Metrics <em>Display</em></h2>
       <p class="section-desc">Key figures use Playfair Display at display scale to convey authority. Values animate via counter-up on scroll entry.</p>
 
-      <div class="demo-frame" data-label="Metrics bar" style="padding:0;background:linear-gradient(180deg,#0B0C0E,#0F1014)">
+      <div class="demo-frame" data-label="Metrics bar" style="padding:0;background:linear-gradient(180deg,#0A0A0A,#0F0F11)">
         <div class="metrics-demo">
           <div class="metric-item">
             <div class="metric-val">$<span>2.4</span><sup>B+</sup></div>
@@ -1072,14 +1077,14 @@ scrolled: background rgba(11,12,14,.92) · backdrop-filter blur(20px)
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
         <div>
           <div class="form-label" style="margin-bottom:12px">Noise overlay (opacity 0.028)</div>
-          <div style="height:180px;background:#0B0C0E;border:1px solid var(--line-soft);border-radius:6px;position:relative;overflow:hidden">
+          <div style="height:180px;background:#0A0A0A;border:1px solid var(--line-soft);border-radius:6px;position:relative;overflow:hidden">
             <div style="position:absolute;inset:0;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);opacity:.028;mix-blend-mode:overlay;pointer-events:none"></div>
             <div style="position:absolute;bottom:16px;left:16px;font-size:11px;color:var(--text-mute)">body::after · z-index 9990</div>
           </div>
         </div>
         <div>
           <div class="form-label" style="margin-bottom:12px">Gold grid (64px × 64px)</div>
-          <div style="height:180px;background:#0B0C0E;border:1px solid var(--line-soft);border-radius:6px;position:relative;overflow:hidden">
+          <div style="height:180px;background:#0A0A0A;border:1px solid var(--line-soft);border-radius:6px;position:relative;overflow:hidden">
             <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none"></div>
             <div style="position:absolute;bottom:16px;left:16px;font-size:11px;color:var(--text-mute)">section::before · .texture-grid</div>
           </div>
@@ -1102,17 +1107,17 @@ mix-blend-mode: overlay;</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:8px;overflow:hidden;margin-bottom:16px">
         <div style="padding:28px 20px;background:var(--color-bg-base);border:1px solid var(--line-soft)">
           <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin-bottom:8px">Hero</div>
-          <div style="font-size:13px;color:var(--text-dim);font-family:var(--mono)">#0B0C0E</div>
+          <div style="font-size:13px;color:var(--text-dim);font-family:var(--mono)">#0A0A0A</div>
           <div style="font-size:11px;color:var(--text-mute);margin-top:4px">.bg-section-base</div>
         </div>
         <div style="padding:28px 20px;background:linear-gradient(180deg,var(--color-bg-base),var(--color-bg-step-1));border:1px solid var(--line-soft)">
           <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin-bottom:8px">Metrics</div>
-          <div style="font-size:13px;color:var(--text-dim);font-family:var(--mono)"> #0F1013</div>
+          <div style="font-size:13px;color:var(--text-dim);font-family:var(--mono)"> #0F0F11</div>
           <div style="font-size:11px;color:var(--text-mute);margin-top:4px">.bg-section-descend</div>
         </div>
         <div style="padding:28px 20px;background:linear-gradient(180deg,var(--color-bg-step-1),var(--color-bg-step-2));border:1px solid var(--line-soft)">
           <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute);margin-bottom:8px">Services</div>
-          <div style="font-size:13px;color:var(--text-dim);font-family:var(--mono)"> #121416</div>
+          <div style="font-size:13px;color:var(--text-dim);font-family:var(--mono)"> #121214</div>
           <div style="font-size:11px;color:var(--text-mute);margin-top:4px">.bg-section-mid</div>
         </div>
         <div style="padding:28px 20px;background:linear-gradient(180deg,var(--color-bg-step-2),var(--color-bg-base));border:1px solid var(--line-soft)">

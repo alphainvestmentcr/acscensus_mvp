@@ -19,13 +19,13 @@
   /* ── COLOUR ─────────────────────────────────────────────────────────── */
 
   /* Backgrounds — elevation scale (darkest → lightest) */
-  --color-bg-base:      #0B0C0E;   /* page canvas                         */
-  --color-bg-step-1:    #0F1013;   /* section shift tier 1 (metrics)      */
-  --color-bg-step-2:    #121416;   /* section shift tier 2 (services)     */
+  --color-bg-base:      #0A0A0A;   /* page canvas                         */
+  --color-bg-step-1:    #0F0F11;   /* section shift tier 1 (metrics end)  */
+  --color-bg-step-2:    #121214;   /* section shift tier 2 (socio/proceso)*/
   --color-bg-soft:      #121212;   /* subtle surface lift                 */
   --color-bg-elev:      #181C24;   /* cards, panels, drawers              */
   --color-bg-raised:    #1E2330;   /* hover targets, tooltips             */
-  --color-bg-overlay:   rgba(11, 12, 14, 0.88); /* modal scrim          */
+  --color-bg-overlay:   rgba(10, 10, 10, 0.88); /* modal scrim          */
 
   /* Gold — primary brand accent */
   --color-gold:         #C6AA4C;   /* primary                             */
@@ -39,7 +39,7 @@
   --color-text:         #F5F3EF;   /* primary — soft warm white            */
   --color-text-dim:     #A8A090;   /* secondary — supporting copy         */
   --color-text-mute:    #6E6960;   /* tertiary — placeholders, disabled   */
-  --color-text-inverse: #0B0C0E;   /* on bright surfaces                  */
+  --color-text-inverse: #0A0A0A;   /* on bright surfaces                  */
 
   /* Borders & lines */
   --color-line:         rgba(198, 170, 76, 0.18);  /* gold-tinted border  */
@@ -213,7 +213,7 @@
   /* Navigation */
   --nav-height-default:    88px;
   --nav-height-scrolled:   60px;
-  --nav-bg-scrolled:       rgba(11, 12, 14, 0.92);
+  --nav-bg-scrolled:       rgba(10, 10, 10, 0.92);
   --nav-blur-scrolled:     20px;
 
   /* Buttons */
@@ -221,10 +221,10 @@
   --btn-height-md:   44px;
   --btn-height-lg:   52px;
   --btn-pad-x-sm:    20px;
-  --btn-pad-x-md:    28px;
-  --btn-pad-x-lg:    36px;
+  --btn-pad-x-md:    40px;   /* implemented: padding 16px 40px            */
+  --btn-pad-x-lg:    40px;
   --btn-font-size:   var(--text-2xs);
-  --btn-tracking:    var(--tracking-caps);
+  --btn-tracking:    var(--tracking-wider);   /* 0.16em                   */
   --btn-weight:      var(--weight-medium);
 
   /* Cards */
@@ -252,7 +252,7 @@
 @theme inline {
 
   -- Colors --
-  --color-bg-base:      #0B0C0E;
+  --color-bg-base:      #0A0A0A;
   --color-bg-soft:      #121212;
   --color-bg-elev:      #181C24;
   --color-bg-raised:    #1E2330;
@@ -267,7 +267,7 @@
   --color-text:         #F5F3EF;
   --color-text-dim:     #A8A090;
   --color-text-mute:    #6E6960;
-  --color-text-inverse: #0B0C0E;
+  --color-text-inverse: #0A0A0A;
 
   --color-line:         rgba(198, 170, 76, 0.18);
   --color-line-soft:    rgba(255, 255, 255, 0.06);
@@ -319,7 +319,11 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   GOLD GRID TEXTURE UTILITY  (add to any section as ::before / ::after)
+   GOLD GRID TEXTURE UTILITY
+   Static CSS fallback. In production (React/Vite), the hero and final-cta
+   sections use the animated <Squares> canvas component instead:
+     borderColor="rgba(198,170,76,0.20)"  squareSize={64}  direction="diagonal"
+   This static version is still used for non-React renders / SSG skeletons.
    ───────────────────────────────────────────────────────────────────────── */
 .texture-grid::before {
   content: '';
@@ -389,9 +393,9 @@
   inset: 0;
   background:
     radial-gradient(ellipse 55% 80% at 88% 55%,
-      rgba(198, 170, 76, 0.09), transparent 65%),
+      rgba(198, 170, 76, 0.06), transparent 65%),
     radial-gradient(ellipse 80% 80% at 50% 50%,
-      transparent 35%, rgba(0, 0, 0, 0.45) 100%);
+      transparent 35%, rgba(0, 0, 0, 0.18) 100%);
   pointer-events: none;
   z-index: 0;
 }
