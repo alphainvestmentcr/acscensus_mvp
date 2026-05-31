@@ -73,7 +73,8 @@
     .form-group textarea{resize:vertical;min-height:120px}
     .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 120px;overflow:hidden;background:#0A0A0A}
     .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 80% at 88% 55%,rgba(198,170,76,.09),transparent 65%),radial-gradient(ellipse 80% 80% at 50% 50%,transparent 35%,rgba(0,0,0,.45) 100%);pointer-events:none;z-index:0}
-    .hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
+    @keyframes grid-move{to{background-position:64px 64px}}
+    .hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.06) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0;animation:grid-move 6s linear infinite}
     .hero>.container{width:100%;display:grid;grid-template-columns:55fr 45fr;position:relative;z-index:1}
     .hero-inner{position:relative;z-index:2;grid-column:1;padding-right:56px;text-align:left}
     .hero-bull{position:absolute;right:8%;bottom:0;height:92%;width:auto;object-fit:contain;pointer-events:none;z-index:1;-webkit-mask-image:linear-gradient(to left,#000 52%,transparent 100%);mask-image:linear-gradient(to left,#000 52%,transparent 100%);opacity:0}
@@ -146,7 +147,7 @@
     .step h4{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:12px}
     .step p{font-size:14px;color:var(--text-dim);line-height:1.72}
     .final-cta{padding:140px 0;position:relative;overflow:hidden;background:#0A0A0A}
-    .final-cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
+    .final-cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.06) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0;animation:grid-move 6s linear infinite}
     .final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(198,170,76,.06),transparent 70%);pointer-events:none}
     .final-cta-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1}
     .final-cta h2{font-family:var(--serif);font-size:clamp(32px,4vw,54px);font-weight:300;line-height:1.2;margin-bottom:24px;letter-spacing:-.01em}
@@ -173,7 +174,7 @@
     .delay-3{transition-delay:.3s}
     .delay-4{transition-delay:.4s}
     .subhero{position:relative;padding:180px 0 100px;overflow:hidden;background:linear-gradient(180deg,#0A0A0A 0%,#0F0F11 100%)}
-    .subhero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.03) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+    .subhero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(198,170,76,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(198,170,76,.05) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;animation:grid-move 6s linear infinite}
     .subhero-inner{position:relative;z-index:1;max-width:700px}
     .timeline{position:relative;padding:0 0 0 48px}
     .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,transparent,var(--line) 10%,var(--line) 90%,transparent)}
@@ -201,7 +202,7 @@
     .contact-inline{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 22px;margin-top:28px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim)}
     .contact-inline span{position:relative}
     .contact-inline span+span::before{content:'•';position:absolute;left:-13px;color:var(--gold-dim)}
-    @media(prefers-reduced-motion:reduce){.hero-bull{animation:none!important}.scroll-hint::before{animation:none}}
+    @media(prefers-reduced-motion:reduce){.hero-bull{animation:none!important}.scroll-hint::before{animation:none}.hero::after,.final-cta::after,.subhero::after{animation:none}}
     @supports not (backdrop-filter:blur(1px)){.nav.scrolled{background:rgba(10,10,10,.97)}}
     @media(max-width:1024px){
       .services-grid{grid-template-columns:repeat(2,1fr)}
